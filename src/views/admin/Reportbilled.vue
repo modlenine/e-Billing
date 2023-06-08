@@ -11,12 +11,12 @@
                         <hr>
                         <FilterDataReport/>
                         <div class="row form-group">
-                            <div class="col-md-3">
+                            <div class="col-md-4 col-lg-4">
                                 <span><b>จำนวน Invoice : </b></span>
                                 <span class="ml-2">{{totalinvoice}}</span>
                                 <span class="ml-2"><b>รายการ</b></span>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-4 col-lg-4">
                                 <span class=""><b>ยอดเงินรวมทั้งสิ้น : </b></span>
                                 <span class="ml-2">{{totalamount}}</span>
                                 <span class="ml-2"><b>บาท</b></span>
