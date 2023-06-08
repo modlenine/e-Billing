@@ -283,6 +283,25 @@ export default {
         proxy.getDataUserSettingForEdit(data_autoid);
       });
 
+
+      $(document).on('click' , '.btn-addEmail' , function(){
+          $('#ip-addUser-search').prop('readonly' , false);
+          $('#ip-addUser-ecode').val('');
+          $('#ip-addUser-username').val('');
+          $('#ip-addUser-fullname').val('');
+          $('#ip-addUser-dept').val('');
+          $('#ip-addUser-deptcode').val('');
+          $('#ip-addUser-email').val('');
+          $('#ip-addUser-autoid').val('');
+
+          $('#btn-saveAddUser').html("บันทึก");
+          $('input:radio[name="ip-addUser-admin"]').prop('checked' , false);
+          $('input:radio[name="ip-addUser-upload"]').prop('checked' , false);
+          $('input:radio[name="ip-addUser-acc"]').prop('checked' , false);
+          $('input:radio[name="ip-addUser-ap"]').prop('checked' , false);
+          $('input:radio[name="ip-addUser-fn"]').prop('checked' , false);
+      });
+
       $(document).on('click' , '.delUser' , function(){
         const data_autoid = $(this).attr('data_autoid');
           Swal.fire({
