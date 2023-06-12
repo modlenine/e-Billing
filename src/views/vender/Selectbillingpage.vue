@@ -1,6 +1,6 @@
 <template>
   <div id="selectbillingpage">
-        <div class="main-container">
+    <div v-if="openBillPageStatus == true" class="main-container">
           <div class="pd-ltr-20">
           
             <form id="frm-saveSelectBill" @submit.prevent="saveSelectBill">
@@ -49,7 +49,25 @@
             </form>
 
           </div>
-      </div>
+    </div>
+
+    <div v-else class="main-container">
+        <div class="pd-ltr-20">
+        
+            <div class="row">
+            <div class="col-xl-12 mb-30">
+                <div class="card-box height-100-p pd-20">
+                    <div class="mt-5"></div>
+                    <h3 style="text-align:center;">ยังไม่เปิดให้วางบิล</h3>
+                    <hr>
+                </div>
+            </div>
+            </div>
+
+        </div>
+    </div>
+
+
   </div>
 </template>
 
@@ -78,6 +96,7 @@ export default {
             numofday:0,
             period:'',
 			baseurl:this.baseUrl(),
+            openBillPageStatus:true
         }
     },
     mounted() {
@@ -91,7 +110,7 @@ export default {
         });
     },
     created() {
-        this.getVenderInformationByaccount();
+        this.checkDateOpenAndClose();
     },
     methods: {
         getVenderInformationByaccount(){
@@ -231,6 +250,27 @@ export default {
                 });
                 
             }
+        },
+        checkDateOpenAndClose()
+        {
+            axios.post(this.url+'intsys/ebilling/ebilling_backend/apivender/checkDateOpenAndClose',{
+                action:'checkDateOpenAndClose'
+            }).then(res=>{
+                console.log(res.data);
+                if(res.data.status == "Select Data Success"){
+                    //code
+                    let dateNowSec = res.data.dateNowSec;
+                    let dateOpenSec = res.data.dateOpenSec;
+                    let dataCloseSec = res.data.dateCloseSec;
+
+                    if(dateNowSec >= dateOpenSec && dateNowSec <= dataCloseSec){
+                        this.openBillPageStatus = true;
+                            this.getVenderInformationByaccount();
+                    }else{
+                        this.openBillPageStatus = false;
+                    }
+                }
+            });
         }
     },
 }

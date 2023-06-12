@@ -268,7 +268,7 @@ export default {
                             $('#ap-memo-foradmin').prop('readonly' , true);
 
                             $('#zone-savePay').css('display' , '');
-                            if(this.permissionData.u_finance_section == "yes"){
+                            if(this.permissionData.u_upload2_section == "yes"){
                                 $('#btn-uploadfile').css('display' , '');
                             }else{
                                 $('#btn-uploadfile').css('display' , 'none');

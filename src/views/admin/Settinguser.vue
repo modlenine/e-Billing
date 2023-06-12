@@ -47,7 +47,7 @@
 
                     <div class="row form-group">
                         <div class="col-md-6 form-group">
-                            <span><b>Admin Section</b></span>
+                            <span><b>สิทธิ์ผู้ดูแลระบบ</b></span>
                         </div>
                         <div class="col-md-6 form-group">
                             <div class="row">
@@ -68,7 +68,7 @@
 
                     <div class="row form-group">
                         <div class="col-md-6 form-group">
-                            <span><b>Upload Section</b></span>
+                            <span><b>สิทธิ์ในการอัพโหลดเอกสารจากระบบ AX</b></span>
                         </div>
                         <div class="col-md-6 form-group">
                             <div class="row">
@@ -89,7 +89,7 @@
 
                     <div class="row form-group">
                         <div class="col-md-6 form-group">
-                            <span><b>Acc Section</b></span>
+                            <span><b>สิทธิ์ในการรับ Email ทุกฉบับของรายการ</b></span>
                         </div>
                         <div class="col-md-6 form-group">
                             <div class="row">
@@ -110,7 +110,7 @@
 
                     <div class="row form-group">
                         <div class="col-md-6 form-group">
-                            <span><b>AP Section</b></span>
+                            <span><b>สิทธิ์ในการอนุมัติใบรับวางบิล</b></span>
                         </div>
                         <div class="col-md-6 form-group">
                             <div class="row">
@@ -131,7 +131,7 @@
 
                     <div class="row form-group">
                         <div class="col-md-6 form-group">
-                            <span><b>Finance Section</b></span>
+                            <span><b>สิทธิ์ในการลงบันทึกการทำจ่าย</b></span>
                         </div>
                         <div class="col-md-6 form-group">
                             <div class="row">
@@ -143,6 +143,27 @@
                                     </div> 
                                     <div class="custom-control custom-radio mb-5 ml-3">
                                         <input type="radio" id="ip-addUser-fn-no" name="ip-addUser-fn" value="no" class="custom-control-input" required> <label for="ip-addUser-fn-no" class="custom-control-label">No</label>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="row form-group">
+                        <div class="col-md-6 form-group">
+                            <span><b>สิทธิ์ในการอัพโหลดไฟล์หลังวางบิล</b></span>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <div class="row">
+                                <div class="col-lg-12 form-inline">
+                                    <div class="custom-control custom-radio mb-5 ml-3">
+                                        <input type="radio" id="ip-addUser-uploadPosted-yes" name="ip-addUser-uploadPosted" value="yes" class="custom-control-input" required> 
+                                        <label for="ip-addUser-uploadPosted-yes" class="custom-control-label">Yes</label>
+                                    </div> 
+                                    <div class="custom-control custom-radio mb-5 ml-3">
+                                        <input type="radio" id="ip-addUser-uploadPosted-no" name="ip-addUser-uploadPosted" value="no" class="custom-control-input" required> <label for="ip-addUser-uploadPosted-no" class="custom-control-label">No</label>
                                     </div>
 
                                 </div>
@@ -297,6 +318,7 @@ export default {
           $('#btn-saveAddUser').html("บันทึก");
           $('input:radio[name="ip-addUser-admin"]').prop('checked' , false);
           $('input:radio[name="ip-addUser-upload"]').prop('checked' , false);
+          $('input:radio[name="ip-addUser-uploadPosted"]').prop('checked' , false);
           $('input:radio[name="ip-addUser-acc"]').prop('checked' , false);
           $('input:radio[name="ip-addUser-ap"]').prop('checked' , false);
           $('input:radio[name="ip-addUser-fn"]').prop('checked' , false);
@@ -449,6 +471,8 @@ export default {
                 $('input:radio[name="ip-addUser-fn"]').prop('checked' , false);
                 $('input:radio[name="ip-addUser-admin"]').prop('checked' , false);
                 $('input:radio[name="ip-addUser-upload"]').prop('checked' , false);
+                $('input:radio[name="ip-addUser-uploadPosted"]').prop('checked' , false);
+                
                 // clear value
 
                 $('.usersetting-closeClick').click();
@@ -468,6 +492,7 @@ export default {
                 $('input:radio[name="ip-addUser-fn"]').prop('checked' , false);
                 $('input:radio[name="ip-addUser-admin"]').prop('checked' , false);
                 $('input:radio[name="ip-addUser-upload"]').prop('checked' , false);
+                $('input:radio[name="ip-addUser-uploadPosted"]').prop('checked' , false);
                 // clear value
 
                 $('.usersetting-closeClick').click();
@@ -513,6 +538,12 @@ export default {
                 $('#ip-addUser-upload-yes').prop('checked' , true);
               }else if(result.u_upload_section == "no"){
                 $('#ip-addUser-upload-no').prop('checked' , true);
+              }
+
+              if(result.u_upload2_section == "yes"){
+                $('#ip-addUser-uploadPosted-yes').prop('checked' , true);
+              }else if(result.u_upload2_section == "no"){
+                $('#ip-addUser-uploadPosted-no').prop('checked' , true);
               }
 
               if(result.u_account_section == "yes"){
