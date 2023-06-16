@@ -523,7 +523,9 @@ export default {
 
               $('#btn-saveAddUser').html("บันทึกการแก้ไขข้อมูล");
 
-              if(this.userData.DeptCode != "1002"){
+              if(this.userData.DeptCode == "1002" || this.userData.DeptCode == "1003"){
+                // Nothing
+              }else{
                 $('input:radio[name="ip-addUser-admin"]').click(function(e){
                   e.preventDefault();
                 })

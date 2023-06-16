@@ -135,7 +135,7 @@ export default {
 						showConfirmButton: false,
 						timer:1000
 					}).then(function(){
-						location.href = proxy.baseurl;
+						location.href = proxy.url+'intsys/ebilling/admin';
 					});
 				}else if(res.data.status == "Login failed please fill username and password"){
 					Swal.fire({
@@ -144,7 +144,7 @@ export default {
 						showConfirmButton: false,
 						timer:1000
 					}).then(function(){
-						location.href = proxy.baseurl;
+						location.href = proxy.url+'intsys/ebilling/admin';
 					});
 				}else if(res.data.status == "You can not access this program"){
 					Swal.fire({
@@ -153,7 +153,7 @@ export default {
 						showConfirmButton: false,
 						timer:1000
 					}).then(function(){
-						location.href = proxy.baseurl;
+						location.href = proxy.url+'intsys/ebilling/admin';
 					});
 				}
 			});

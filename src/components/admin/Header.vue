@@ -163,7 +163,7 @@ export default {
 
         $('#logoutBtn').click(function(){
             localStorage.removeItem('userData');
-            location.href = proxy.baseurl;
+            location.href = proxy.url+'intsys/ebilling/admin';
         });
 
         $(document).on('click' , '.header-left' , function(){
