@@ -26,6 +26,20 @@
                               <input type="text" name="userpro-email" id="userpro-email" class="form-control">
                             </div>
                         </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                              <label for=""><b>ผู้ติดต่อเพิ่มเติม</b></label>
+                            </div>
+                            <div class="col-md-12 form-group">
+                              <label for=""><b>Email</b></label>
+                              <input type="text" name="userpro-email1" id="userpro-email1" class="form-control">
+                            </div>
+                            <div class="col-md-12 form-group">
+                              <label for=""><b>Email</b></label>
+                              <input type="text" name="userpro-email2" id="userpro-email2" class="form-control">
+                            </div>
+                        </div>
                         <div class="row form-group">
                             <div class="col-md-12">
                                 <button type="submit" class="btn btn-info" id="btn-save-userpro" name="btn-save-userpro">บันทึกข้อมูล</button>
@@ -82,6 +96,21 @@
 
                       <div class="row form-group">
                         <div class="col-md-3"></div>
+                        <div class="col-md-6 userinformation">
+                          <span><b>ผู้ติดต่อเพิ่มเติม</b></span>
+                          <p></p>
+                          <p>
+                            <span><b>Email : </b>{{useremail1}}</span>
+                          </p>
+                          <p>
+                            <span><b>Email : </b>{{useremail2}}</span>
+                          </p>
+                        </div>
+                        <div class="col-md-3"></div>
+                      </div>
+
+                      <div class="row form-group">
+                        <div class="col-md-3"></div>
                         <div class="col-md-6 text-center">
                           <button type="button" id="btn-edit-userprofile" name="btn-edit-userprofile" class="btn btn-info" data-toggle="modal" data-target="#editUserprofile_modal">แก้ไขข้อมูล</button>
                         </div>
@@ -117,6 +146,8 @@ export default {
       userData_vender:this.getSessionStorage_vender(),
 
       useremail:'',
+      useremail1:'',
+      useremail2:'',
       rsImagePath:'',
       rsImageName:''
 
@@ -160,7 +191,11 @@ export default {
         const imageElement = document.createElement('img');
 
         const email = $(this).attr('email');
+        const email1 = $(this).attr('email1');
+        const email2 = $(this).attr('email2');
         $('#userpro-email').val(email);
+        $('#userpro-email1').val(email1);
+        $('#userpro-email2').val(email2);
 
         while (imagePreview.firstChild) {
           imagePreview.removeChild(imagePreview.firstChild);
@@ -191,6 +226,8 @@ export default {
           let imagepath = '';
           let result = res.data.result;
           let email = result.vm_email;
+          let email1 = result.vm_email1;
+          let email2 = result.vm_email2;
 
           if(result.vm_picture_profile === null){
             imagename = 'userlogo.png';
@@ -203,10 +240,14 @@ export default {
           $('#btn-edit-userprofile').attr({
             'imagename':imagename,
             'imagepath':imagepath,
-            'email':email
+            'email':email,
+            'email1':email1,
+            'email2':email2
           });
 
           this.useremail = email;
+          this.useremail1 = email1;
+          this.useremail2 = email2;
           this.rsImagePath = imagepath;
           this.rsImageName = imagename;
           
