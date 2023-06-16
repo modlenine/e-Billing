@@ -281,10 +281,10 @@ export default {
           });
         }else if(res.data.status == "Update Data Success And Activate Data Again"){
           Swal.fire({
-              title: 'เปลี่ยนอีเมลสำเร็จ',
+              title: 'ระบบได้ทำการส่ง Link สำหรับ Activate Email ให้ท่านเรียบร้อยแล้ว',
               icon: 'success',
               showConfirmButton: false,
-              timer:2000
+              timer:3000
           }).then(function(){
               localStorage.removeItem('userData_vender');
               $('.userpro-closeClick').click();
