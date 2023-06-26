@@ -51,7 +51,7 @@
                     <a href="#">
                         <!-- <img src="#" alt="" class="dark-logo">
                         <img src="#" alt="" class="light-logo"> -->
-                        <span style="font-size:28px;color:#ef476f;"><b>Bill Online System</b></span>
+                        <span style="font-size:28px;color:#ef476f;"><b>e-Billing System</b></span>
                     </a>
                     <div class="close-sidebar" data-toggle="left-sidebar-close">
                         <i class="ion-close-round"></i>

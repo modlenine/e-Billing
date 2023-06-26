@@ -8,10 +8,8 @@
                 <div class="col-xl-12 mb-30">
                   <div class="card-box height-100-p pd-20">
                     <div class="mt-5"></div>
-                      <h3 style="text-align:center;">หน้าแรก</h3>
-                      <hr>
+                      <h4 style="text-align:center;">ประกาศหลัก</h4>
                       <div>
-                        <h4 style="text-align:center;">ประกาศหลัก</h4>
                         <div class="mt-3"></div>
                         <table id="tbl_announce_mainshow" class="table table-striped table-bordered" cellspacing="0">
                             <thead>
