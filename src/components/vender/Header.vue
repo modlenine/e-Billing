@@ -74,7 +74,7 @@
 
                             <li>
                                 <router-link to='/billedlist' class="dropdown-toggle no-arrow menu">
-                                    <span class="micon dw dw-file-210 wdfI1"></span><span class="mtext">ตรวจสอบใบวางบิล</span>
+                                    <span class="micon dw dw-file-210 wdfI1"></span><span class="mtext">ตรวจสอบใบวางบิล / ดาวน์<br>โหลดใบหัก ณ ที่จ่าย</span>
                                 </router-link>
                             </li>
 

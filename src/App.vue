@@ -2,10 +2,15 @@
   <div id="app">
     <div v-if="this.$router.currentRoute.path.substring(1,6) == 'admin'">
       <div v-if="userData !== null">
-        <Headeradmin
-          :userDataProps="this.userData"
-        />
+        <div v-if="userData.DeptCode == '1003' || userData.DeptCode == '1002'">
+          <Headeradmin
+            :userDataProps="this.userData"
+          />
           <router-view></router-view>
+        </div>
+        <div v-else>
+          <Notallowpage/>
+        </div>
       </div>
       <div v-else>
         <Loginpageadmin/>
@@ -54,6 +59,7 @@ import Resultactivate from '@/views/vender/ResultActivate.vue';
 import EditemailActivate from '@/views/vender/EditemailActivate.vue'
 import Forgotpassword from '@/views/vender/Forgotpassword.vue'
 import Resetpassword from '@/views/vender/Resetpassword.vue'
+import Notallowpage from '@/views/admin/Notallowpage.vue'
 // import axios from 'axios'
 
 export default {
@@ -67,7 +73,8 @@ export default {
     Resultactivate,
     EditemailActivate,
     Forgotpassword,
-    Resetpassword
+    Resetpassword,
+    Notallowpage
   },
   data() {
     return {
