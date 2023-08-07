@@ -172,10 +172,19 @@ export default {
 
                         if(result.length !== 0){
                             for(let i = 0; i < result.length; i++){
+                                let oecheck = "";
+                                let onclickfalse = "";
+                                if(result[i].voucher == "OE"){
+                                    oecheck = "checked";
+                                    onclickfalse = 'onclick="return false"';
+                                }else{
+                                    oecheck = "";
+                                    onclickfalse = "";
+                                }
                                 html +=`
                                 <tbody>
                                     <tr>
-                                        <td><input type="checkbox" class="cb_select" id="cb_`+result[i].autoid+`" name="cb[]" value="`+result[i].autoid+`"></td>
+                                        <td><input type="checkbox" class="cb_select" id="cb_`+result[i].autoid+`" name="cb[]" value="`+result[i].autoid+`" `+oecheck+` `+onclickfalse+`></td>
                                         <td>`+result[i].invoiceid+`</td>
                                         <td>`+moment(result[i].invoicedate).format('DD/MM/Y')+`</td>
                                         <td>`+result[i].purchid+`</td>
