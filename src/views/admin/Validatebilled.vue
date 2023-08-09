@@ -13,7 +13,7 @@
                     <form id="frm-saveConfirmBill" @submit.prevent="saveConfirmBill">
                       <div>
                         <h4 class="mb-2">บริษัท {{venderdata.name}}</h4>
-                        <span>ที่อยู่ {{venderdata.address}}</span>
+                        <!-- <span>ที่อยู่ {{venderdata.address}}</span> -->
                       </div>
                       <div class="mt-3">
                         <span><b>เครดิตเทอม : </b>{{creditterm}} <b>วัน</b></span>

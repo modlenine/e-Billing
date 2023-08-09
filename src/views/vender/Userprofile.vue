@@ -205,6 +205,23 @@ export default {
         imagePreview.appendChild(imageElement);
       });
 
+      $('#userpro-email1').on('keyup' , function(){
+        let str = $(this).val();
+        console.log(proxy.notKeySingleQ(str));
+        if(proxy.notKeySingleQ(str) === false){
+          Swal.fire({
+              title: "ตรวจพบเครื่องหมาย(','')",
+              icon: 'error',
+              showConfirmButton: false,
+              timer:1000
+          }).then(function(){
+              //Code
+              $('#userpro-email1').val('')
+          });
+        }
+
+      });
+
 
 
   },
@@ -258,52 +275,98 @@ export default {
     {
       //code
       // const proxy = this;
-      $('#btn-save-userpro').prop('disabled' , true);
-      const form = $('#frm-editUserprofile')[0];
-      const data = new FormData(form);
-      axios.post(this.url+'intsys/ebilling/ebilling_backend/apivender/saveEditProfile' , data , {
-        header:{
-          'Content-Type':'multipart/form-data'
-        },
-      }).then(res=>{
-        console.log(res.data);
-        if(res.data.status == "Update Data Success"){
-          Swal.fire({
-              title: 'อัพเดตข้อมูลสำเร็จ',
-              icon: 'success',
-              showConfirmButton: false,
-              timer:1000
-          }).then(function(){
-              //Code
-              $('.userpro-closeClick').click();
-              location.reload();
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const email1 = $('#userpro-email1').val();
+      const email2 = $('#userpro-email2').val();
 
-          });
-        }else if(res.data.status == "Update Data Success And Activate Data Again"){
+      let haveEmail1 = "";
+      let haveEmail2 = "";
+      if(email1 !== ""){
+        if (emailPattern.test(email1) === false) {
+          console.log("Valid email address");
           Swal.fire({
-              title: 'ระบบได้ทำการส่ง Link สำหรับ Activate Email ให้ท่านเรียบร้อยแล้ว',
-              icon: 'success',
-              showConfirmButton: false,
-              timer:3000
-          }).then(function(){
-              localStorage.removeItem('userData_vender');
-              $('.userpro-closeClick').click();
-              location.reload();
-          });
-          
-          // location.reload();
-        }else if(res.data.status == "Found Duplicate Email"){
-          Swal.fire({
-              title: 'พบข้อมูลซ้ำในระบบ',
+              title: 'กรุณากรอก Email ให้ถูกต้อง',
               icon: 'error',
               showConfirmButton: false,
-              timer:2000
-          }).then(function(){
-              $('#btn-save-userpro').prop('disabled' , false);
-              $('#userpro-email').val('');
+              timer:1000
           });
+        }else{
+          haveEmail1 = true;
         }
-      });
+      }else{
+        haveEmail1 = true;
+      }
+
+      if(email2 !== ""){
+        if (emailPattern.test(email2) === false) {
+          console.log("Valid email address");
+          Swal.fire({
+              title: 'กรุณากรอก Email ให้ถูกต้อง',
+              icon: 'error',
+              showConfirmButton: false,
+              timer:1000
+          });
+        }else{
+          haveEmail2 = true;
+        }
+      }else{
+        haveEmail2 = true;
+      }
+
+      if(haveEmail1 === true && haveEmail2 === true){
+        $('#btn-save-userpro').prop('disabled' , true);
+        const form = $('#frm-editUserprofile')[0];
+        const data = new FormData(form);
+        axios.post(this.url+'intsys/ebilling/ebilling_backend/apivender/saveEditProfile' , data , {
+          header:{
+            'Content-Type':'multipart/form-data'
+          },
+        }).then(res=>{
+          console.log(res.data);
+          if(res.data.status == "Update Data Success"){
+            Swal.fire({
+                title: 'อัพเดตข้อมูลสำเร็จ',
+                icon: 'success',
+                showConfirmButton: false,
+                timer:1000
+            }).then(function(){
+                //Code
+                $('.userpro-closeClick').click();
+                location.reload();
+
+            });
+          }else if(res.data.status == "Update Data Success And Activate Data Again"){
+            Swal.fire({
+                title: 'ระบบได้ทำการส่ง Link สำหรับ Activate Email ให้ท่านเรียบร้อยแล้ว',
+                icon: 'success',
+                showConfirmButton: false,
+                timer:3000
+            }).then(function(){
+                localStorage.removeItem('userData_vender');
+                $('.userpro-closeClick').click();
+                location.reload();
+            });
+            
+            // location.reload();
+          }else if(res.data.status == "Found Duplicate Email"){
+            Swal.fire({
+                title: 'พบข้อมูลซ้ำในระบบ',
+                icon: 'error',
+                showConfirmButton: false,
+                timer:2000
+            }).then(function(){
+                $('#btn-save-userpro').prop('disabled' , false);
+                $('#userpro-email').val('');
+            });
+          }
+        });
+      }
+
+
+    },
+    notKeySingleQ(str) 
+    { 
+        return /^[^'"]*$/.test(str); 
     }
   },
 
