@@ -109,6 +109,12 @@ export default {
                                 }else if(cliData[i].dataareaid === "sln"){
                                     // companyname = 'Salee Colour';
                                     logo = proxy.baseurl+'assets/vendors/images/slnBanner.png';
+                                }else if(cliData[i].dataareaid === "tbb"){
+                                    // companyname = 'The bubbles';
+                                    logo = proxy.baseurl+'assets/vendors/images/tbBanner.png';
+                                }else if(cliData[i].dataareaid === "st"){
+                                    // companyname = 'Subtera';
+                                    logo = proxy.baseurl+'assets/vendors/images/stBanner.png';
                                 }
 
 
