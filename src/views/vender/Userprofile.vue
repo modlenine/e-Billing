@@ -84,9 +84,9 @@
                           <p>
                             <span><b>เลขที่ผู้เสียภาษี : </b>{{userData_vender.taxid}}</span>
                           </p>
-                          <p>
+                          <!-- <p>
                             <span><b>ที่อยู่ : </b>{{userData_vender.address}}</span>
-                          </p>
+                          </p> -->
                           <p>
                             <span><b>Email : </b>{{useremail}}</span>
                           </p>

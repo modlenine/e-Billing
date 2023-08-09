@@ -12,7 +12,7 @@
                       <hr>
                       <div>
                         <h4 class="mb-2">บริษัท {{venderInformation.slc_fname}}</h4>
-                        <span>ที่อยู่ {{venderInformation.address}}</span>
+                        <!-- <span>ที่อยู่ {{venderInformation.address}}</span> -->
                       </div>
                       <div class="mt-3">
                         <!-- <span><b>เครดิตเทอม : </b>{{this.payment}} <b>วัน</b></span>

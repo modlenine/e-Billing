@@ -13,7 +13,7 @@
                       <hr>
                       <div>
                         <h4 class="mb-2">บริษัท {{userData_vender.Fname}}</h4>
-                        <span>ที่อยู่ {{userData_vender.address}}</span>
+                        <!-- <span>ที่อยู่ {{userData_vender.address}}</span> -->
                       </div>
                       <div class="mt-3">
                         <!-- <span><b>เครดิตเทอม : </b>{{creditterm}} <b>วัน</b></span>
