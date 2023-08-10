@@ -160,6 +160,15 @@ export default {
 					this.$router.push('/activate/'+res.data.taxid+'/'+res.data.defaultPassword);
 				}else if(res.data.status == "Wait Activate Data"){
 					this.$router.push('/waitactivate/'+res.data.taxid);
+				}else if(res.data.status == "Not Found Taxid"){
+					Swal.fire({
+						title: 'ไม่พบข้อมูล กรุณาตรวจสอบเลขที่ผู้เสียภาษีอีกครั้ง',
+						icon: 'error',
+						showConfirmButton: false,
+						timer:3000
+					}).then(function(){
+						$('#btn-login-vender').prop('disabled' , false);
+					});
 				}
 			});
         },
