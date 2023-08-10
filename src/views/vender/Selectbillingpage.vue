@@ -241,6 +241,7 @@ export default {
                     cancelButtonText:'ยกเลิก'
                 }).then((result)=> {
                     if(result.value == true){
+                        $('#btn-confirm-seletBill').prop('disabled' , true);
                         const form = $('#frm-saveSelectBill')[0];
                         const data = new FormData(form);
 

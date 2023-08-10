@@ -91,6 +91,7 @@
                             <input hidden type="text" name="ap-admin-formno" id="ap-admin-formno" :value="this.formno">
                             <input hidden type="text" name="ap-admin-username" id="ap-admin-username" :value="this.userData.Fname+' '+this.userData.Lname">
                             <input hidden type="text" name="ap-admin-ecode" id="ap-admin-ecode" :value="this.userData.ecode">
+                            <input hidden type="text" name="ap-admin-mainstatus" id="ap-admin-mainstatus" :value="this.mainstatus">
 
                             <div class="row text-center">
                                 <div class="col-md-3"></div>
@@ -161,22 +162,6 @@ export default {
             disabled_dates: ['* * * 0,6'],
         });
 
-        // $(document).on('click' , '#btn-confirm-pay' , function(){
-        //     Swal.fire({
-        //         title: 'ท่านต้องการบันทึกการทำจ่ายใบวางบิล ใช่หรือไม่',
-        //         icon: 'warning',
-        //         showCancelButton: true,
-        //         confirmButtonClass: 'btn btn-success',
-        //         cancelButtonClass: 'btn btn-danger',
-        //         confirmButtonText: 'ยืนยัน',
-        //         cancelButtonText:'ยกเลิก'
-        //     }).then((result)=> {
-        //         if(result.value == true){
-        //             proxy.saveConfirmPay();
-        //         }
-        //     });
-
-        // });
 
         $(document).on('click' , '.delFileI' , function(){
             const data_filename = $(this).attr('data_filename');
@@ -254,12 +239,11 @@ export default {
                         }else if(res.data.mainstatus == "Posted"){
                             $('#btn-approve-seletBill').css('display' , 'none');
                             $('#btn-confirm-pay').css('display' , 'none');
-
-
                             $('#ap-memo-forvender').prop('readonly' , true);
                             $('#ap-memo-foradmin').prop('readonly' , true);
-
                             $('#zone-savePay').css('display' , '');
+                            $('.uploadZone').css('display' , '');
+                            $('#btn-confirm-pay').css('display' , '').html('<i class="mr-2 dw dw-diskette1"></i>บันทึกข้อมูล');
 
                         }else{
                             // $('#btn-approve-seletBill').css('display' , '');
@@ -420,8 +404,14 @@ export default {
             // check value
             const proxy = this;
             if($('#ap-admin-formno').val() != "" && $('#ap-admin-taxid').val() != ""){
+                let titletext = "";
+                if(proxy.mainstatus == "In Progress"){
+                    titletext = "ท่านต้องการบันทึกการทำจ่ายใบวางบิล ใช่หรือไม่";
+                }else{
+                    titletext = "ท่านต้องการอัพโหลดไฟล์เพิ่มเติม ใช่หรือไม่";
+                }
                 Swal.fire({
-                    title: 'ท่านต้องการบันทึกการทำจ่ายใบวางบิล ใช่หรือไม่',
+                    title: titletext,
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonClass: 'btn btn-success',
@@ -441,7 +431,16 @@ export default {
                             console.log(res.data);
                             if(res.data.status == "Update Data Success"){
                                 Swal.fire({
-                                    title: 'อัพโหลดไฟล์สำเร็จ',
+                                    title: 'บันทึกข้อมูลการทำจ่ายเรียบร้อยแล้ว',
+                                    icon: 'success',
+                                    showConfirmButton: false,
+                                    timer:1000
+                                }).then(function(){
+                                    proxy.$router.push("/admin/validatebilled");
+                                });
+                            }else if(res.data.status == "Update File Upload Success"){
+                                Swal.fire({
+                                    title: 'อัพเดตไฟล์อัพโหลดเสร็จเรียบร้อย',
                                     icon: 'success',
                                     showConfirmButton: false,
                                     timer:1000
