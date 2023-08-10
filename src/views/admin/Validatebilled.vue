@@ -25,13 +25,13 @@
                       </div>
                       <hr>
                       <div id="show_billDetailConfirm"></div>
-                        <input hidden type="text" name="sedadmin-taxid" id="sedadmin-taxid" :value="venderdata.bpc_whtid">
-                        <input hidden type="text" name="sedadmin-venderaccount" id="sedadmin-venderaccount" :value="venderdata.accountnum">
-                        <input hidden type="text" name="sedadmin-dataareaid" id="sedadmin-dataareaid" :value="venderdata.dataareaid">
-                        <input hidden type="text" name="sedadmin-formno" id="sedadmin-formno" :value="this.formno">
 
-                        <input hidden type="text" name="seadmin-username" id="seadmin-username" :value="this.userData.Fname+' '+this.userData.Lname">
-                        <input hidden type="text" name="seadmin-ecode" id="seadmin-ecode" :value="this.userData.ecode">
+                    <input hidden type="text" name="sedadmin-taxid" id="sedadmin-taxid" :value="venderdata.bpc_whtid">
+                    <input hidden type="text" name="sedadmin-venderaccount" id="sedadmin-venderaccount" :value="venderdata.accountnum">
+                    <input hidden type="text" name="sedadmin-dataareaid" id="sedadmin-dataareaid" :value="venderdata.dataareaid">
+                    <input hidden type="text" name="sedadmin-formno" id="sedadmin-formno" :value="this.formno">
+                    <input hidden type="text" name="seadmin-username" id="seadmin-username" :value="this.userData.Fname+' '+this.userData.Lname">
+                    <input hidden type="text" name="seadmin-ecode" id="seadmin-ecode" :value="this.userData.ecode">
 
                       <div id="zone-approve" style="display:none;" class="row form-group text-center">
                         <div class="col-md-12">
@@ -42,70 +42,60 @@
                     </form>
 
                     <section id="zone-savePay" style="display:none;">
-                        <div class="row mt-3">
-                            <div class="col-md-12 form-group">
-                            <hr>
-                                <h4 class="text-center">บันทึกข้อมูลทำจ่าย</h4>
+                        <form id="frm-saveConfirmPay" @submit.prevent="saveConfirmPay">
+                            <div class="row mt-3">
+                                <div class="col-md-12 form-group">
+                                <hr>
+                                    <h4 class="text-center">บันทึกข้อมูลทำจ่าย</h4>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-8 form-group">
-                                <label for=""><b>หมายเหตุ</b></label>
-                                <textarea name="ap-memo-forvender" id="ap-memo-forvender" cols="30" rows="5" class="form-control" style="height:80px;"></textarea>
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-8 form-group">
+                                    <label for=""><b>หมายเหตุ</b></label>
+                                    <textarea name="ap-memo-forvender" id="ap-memo-forvender" cols="30" rows="5" class="form-control" style="height:80px;"></textarea>
+                                </div>
+                                <div class="col-md-2"></div>
                             </div>
-                            <div class="col-md-2"></div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-8 form-group">
-                                <label for=""><b>บันทึกข้อความ ( สำหรับเจ้าหน้าที่ ข้อความในนี้จะไม่แสดงให้ผู้ค้าเห็น)</b></label>
-                                <textarea name="ap-memo-foradmin" id="ap-memo-foradmin" cols="30" rows="5" class="form-control" style="height:80px;"></textarea>
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-8 form-group">
+                                    <label for=""><b>บันทึกข้อความ ( สำหรับเจ้าหน้าที่ ข้อความในนี้จะไม่แสดงให้ผู้ค้าเห็น)</b></label>
+                                    <textarea name="ap-memo-foradmin" id="ap-memo-foradmin" cols="30" rows="5" class="form-control" style="height:80px;"></textarea>
+                                </div>
+                                <div class="col-md-2"></div>
                             </div>
-                            <div class="col-md-2"></div>
-                        </div>
 
-                        <div class="row text-center">
-                            <div class="col-md-3"></div>
-                            <div class="col-md-6 form-group">
-                                <button style="display:none;" type="button" id="btn-confirm-pay" name="btn-confirm-pay" class="btn btn-success ml-2"><i class="mr-2 dw dw-diskette1"></i>บันทึกการทำจ่าย</button>
+                            <div id="zone-show-fileadmin" class="row form-group">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-8">
+                                    <label for=""><b>เอกสารที่เกี่ยวข้อง</b></label>
+                                    <div class="row" id="show_file"></div>
+                                </div>
+                                <div class="col-md-2"></div>
                             </div>
-                            <div class="col-md-3"></div>
-                        </div>
-                    </section>
 
-                    <section id="upload-file-section" style="display:none;">
-
-                        <div id="zone-show-fileadmin" class="row form-group">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-8">
-                                <label for=""><b>เอกสารที่เกี่ยวข้อง</b></label>
-                                <div class="row" id="show_file"></div>
-                            </div>
-                            <div class="col-md-2"></div>
-                        </div>
-
-                        <form id="frm-ap-uploadfile" @submit.prevent="saveUploadFile">
-                            <div class="row form-group">
+                            <div class="row form-group uploadZone" style="display:none;">
                                 <div class="col-md-2"></div>
                                 <div class="col-md-8">
                                     <label for=""><b>อัพโหลดเอกสารที่เกี่ยวข้อง</b></label>
-                                    <input id="ap-file_name" name="ap-file_name[]" type="file" class="file" multiple data-show-upload="false" data-show-caption="true" data-show-preview="true" accept=".pdf,image/*" required>
+                                    <input id="ap-file_name" name="ap-file_name[]" type="file" class="file" multiple data-show-upload="false" data-show-caption="true" data-show-preview="true" accept=".pdf,image/*">
                                 </div>
                                 <div class="col-md-2"></div>
-
-                                <input hidden type="text" name="ap-file-formno" id="ap-file-formno" :value="this.formno">
-                                <input hidden type="text" name="ap-file-taxid" id="ap-file-taxid" :value="venderdata.bpc_whtid">
-                                <input hidden type="text" name="ap-file-user" id="ap-file-user" :value="this.userData.Fname+' '+this.userData.Lname">
-                                <input hidden type="text" name="ap-file-ecode" id="ap-file-ecode" :value="this.userData.ecode">
-                                
                             </div>
+
+                            <input hidden type="text" name="ap-admin-taxid" id="ap-admin-taxid" :value="venderdata.bpc_whtid">
+                            <input hidden type="text" name="ap-admin-venderaccount" id="ap-admin-venderaccount" :value="venderdata.accountnum">
+                            <input hidden type="text" name="ap-admin-dataareaid" id="ap-admin-dataareaid" :value="venderdata.dataareaid">
+                            <input hidden type="text" name="ap-admin-formno" id="ap-admin-formno" :value="this.formno">
+                            <input hidden type="text" name="ap-admin-username" id="ap-admin-username" :value="this.userData.Fname+' '+this.userData.Lname">
+                            <input hidden type="text" name="ap-admin-ecode" id="ap-admin-ecode" :value="this.userData.ecode">
 
                             <div class="row text-center">
                                 <div class="col-md-3"></div>
                                 <div class="col-md-6 form-group">
-                                    <button style="display:none;" type="submit" id="btn-uploadfile" name="btn-uploadfile" class="btn btn-success ml-2"><i class="mr-2 dw dw-image1"></i>อัพโหลดไฟล์</button>
+                                    <button style="display:none;" type="submit" id="btn-confirm-pay" name="btn-confirm-pay" class="btn btn-success ml-2"><i class="mr-2 dw dw-diskette1"></i>บันทึกการทำจ่าย</button>
                                 </div>
                                 <div class="col-md-3"></div>
                             </div>
@@ -113,7 +103,6 @@
                             <div id="scripts"><script type="application/javascript" defer :src="this.baseurl+`assets/js/bs-filestyle.js`"></script></div>
                         </form>
                     </section>
-
 
                   </div>
                 </div>
@@ -172,22 +161,22 @@ export default {
             disabled_dates: ['* * * 0,6'],
         });
 
-        $(document).on('click' , '#btn-confirm-pay' , function(){
-            Swal.fire({
-                title: 'ท่านต้องการบันทึกการทำจ่ายใบวางบิล ใช่หรือไม่',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonClass: 'btn btn-success',
-                cancelButtonClass: 'btn btn-danger',
-                confirmButtonText: 'ยืนยัน',
-                cancelButtonText:'ยกเลิก'
-            }).then((result)=> {
-                if(result.value == true){
-                    proxy.saveConfirmPay();
-                }
-            });
+        // $(document).on('click' , '#btn-confirm-pay' , function(){
+        //     Swal.fire({
+        //         title: 'ท่านต้องการบันทึกการทำจ่ายใบวางบิล ใช่หรือไม่',
+        //         icon: 'warning',
+        //         showCancelButton: true,
+        //         confirmButtonClass: 'btn btn-success',
+        //         cancelButtonClass: 'btn btn-danger',
+        //         confirmButtonText: 'ยืนยัน',
+        //         cancelButtonText:'ยกเลิก'
+        //     }).then((result)=> {
+        //         if(result.value == true){
+        //             proxy.saveConfirmPay();
+        //         }
+        //     });
 
-        });
+        // });
 
         $(document).on('click' , '.delFileI' , function(){
             const data_filename = $(this).attr('data_filename');
@@ -247,9 +236,12 @@ export default {
                             $('#zone-savePay').css('display' , '');
                             if(this.permissionData.u_finance_section == "yes"){
                                 $('#btn-confirm-pay').css('display' , '');
+                                $('.uploadZone').css('display' , '');
                             }else{
                                 $('#btn-confirm-pay').css('display' , 'none');
+                                $('.uploadZone').css('display' , 'none');
                             }
+
 
                         }else if(res.data.mainstatus == "Checking"){
                             $('#zone-approve').css('display' , '');
@@ -262,17 +254,13 @@ export default {
                         }else if(res.data.mainstatus == "Posted"){
                             $('#btn-approve-seletBill').css('display' , 'none');
                             $('#btn-confirm-pay').css('display' , 'none');
-                            $('#upload-file-section').css('display' , '');
+
 
                             $('#ap-memo-forvender').prop('readonly' , true);
                             $('#ap-memo-foradmin').prop('readonly' , true);
 
                             $('#zone-savePay').css('display' , '');
-                            if(this.permissionData.u_upload2_section == "yes"){
-                                $('#btn-uploadfile').css('display' , '');
-                            }else{
-                                $('#btn-uploadfile').css('display' , 'none');
-                            }
+
                         }else{
                             // $('#btn-approve-seletBill').css('display' , '');
                         }
@@ -430,19 +418,46 @@ export default {
         },
         saveConfirmPay(){
             // check value
-            if($('#sedadmin-formno').val() != "" && $('#sedadmin-taxid').val() != ""){
-                $('#btn-confirm-pay').prop('disabled' , true);
-                axios.post(this.url+'intsys/ebilling/ebilling_backend/apiadmin/saveConfirmPay' , {
-                    action:"saveConfirmPay",
-                    formno:$('#sedadmin-formno').val(),
-                    taxid:$('#sedadmin-taxid').val(),
-                    memovender:$('#ap-memo-forvender').val(),
-                    memoadmin:$('#ap-memo-foradmin').val(),
-                    fnname:$('#seadmin-username').val(),
-                    fnecode:$('#seadmin-ecode').val()
-                }).then(res=>{
-                    console.log(res.data);
-                    this.$router.push('/admin/validatebilled');
+            const proxy = this;
+            if($('#ap-admin-formno').val() != "" && $('#ap-admin-taxid').val() != ""){
+                Swal.fire({
+                    title: 'ท่านต้องการบันทึกการทำจ่ายใบวางบิล ใช่หรือไม่',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonClass: 'btn btn-success',
+                    cancelButtonClass: 'btn btn-danger',
+                    confirmButtonText: 'ยืนยัน',
+                    cancelButtonText:'ยกเลิก'
+                }).then((result)=> {
+                    if(result.value == true){
+                        $('#btn-confirm-pay').prop('disabled' , true);
+
+                        const form = $('#frm-saveConfirmPay')[0];
+                        const data = new FormData(form);
+
+                        axios.post(this.url+'intsys/ebilling/ebilling_backend/apiadmin/saveConfirmPay' ,data, {
+                            header:{'Content-Type' : 'multipart/form-data'},
+                        }).then(res=>{
+                            console.log(res.data);
+                            if(res.data.status == "Update Data Success"){
+                                Swal.fire({
+                                    title: 'อัพโหลดไฟล์สำเร็จ',
+                                    icon: 'success',
+                                    showConfirmButton: false,
+                                    timer:1000
+                                }).then(function(){
+                                    proxy.$router.push("/admin/validatebilled");
+                                });
+                            }
+                        });
+                    }
+                });
+            }else{
+                Swal.fire({
+                    title: 'กรุณาตรวจสอบข้อมูลให้ถูกต้อง',
+                    icon: 'error',
+                    showConfirmButton: false,
+                    timer:1000
                 });
             }
         },

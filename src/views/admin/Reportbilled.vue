@@ -27,6 +27,7 @@
                             <tr>
                                 <!-- <th class="td1">Ulid</th> -->
                                 <th class="td0">Vender name</th>
+                                <th class="td1">Vender Taxid</th>
                                 <th class="td1">Period</th>
                                 <th class="td1">Vender Account</th>
                                 <th class="td2">Company</th>
@@ -361,10 +362,10 @@ export default {
                       });
                   });
 
-                    // $('#normal_list6 , #normal_list2').prop('readonly' , true).css({
-                    //     'background-color':'#F5F5F5',
-                    //     'cursor':'no-drop'
-                    // });
+                    $('#tbl_billedreport_admin1').prop('readonly' , true).css({
+                        'background-color':'#F5F5F5',
+                        'cursor':'no-drop'
+                    });
         },
         getcompany(){
           axios.get(this.url+'intsys/ebilling/ebilling_backend/apiadmin/getcompany').then(res=>{
