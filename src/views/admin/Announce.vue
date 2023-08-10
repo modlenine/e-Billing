@@ -125,7 +125,7 @@
 
 
     <div class="modal fade bs-example-modal-lg" id="createAnnounceMain_modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-        <div class="modal-dialog modal-md modal-dialog-scrollable">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title" id="myLargeModalLabel">หน้าลงประกาศหลัก</h4>
@@ -161,11 +161,22 @@
                                 v-model="contentMain"
                             />
                         </div>
+
+                        <!-- <div class="row form-group uploadZoneAnnounce">
+                            <div class="col-md-12">
+                                <label for=""><b>อัพโหลดเอกสารที่เกี่ยวข้อง</b></label>
+                                <input id="announce-file_name" name="announce-file_name[]" type="file" class="file" multiple data-show-upload="false" data-show-caption="true" data-show-preview="true" accept=".pdf,image/*">
+                            </div>
+                        </div> -->
+
                         <div class="row form-group">
                             <div class="col-md-12">
                                 <button type="button" class="btn btn-info" id="btn-save-announce-main" name="btn-save-announce-main">บันทึกข้อมูล</button>
                             </div>
                         </div>
+
+                        <!-- <div id="scripts"><script type="application/javascript" defer :src="this.baseurl+`assets/js/bs-filestyle.js`"></script></div> -->
+
                       </div>
                     </div>
                   </div>
@@ -349,7 +360,7 @@ export default {
         }
     },
     created() {
-        
+        $('#scripts').load(' #scripts');
     },
     mounted() {
 
