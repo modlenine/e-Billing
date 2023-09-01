@@ -167,7 +167,7 @@ export default {
         },
         logout(){
             Swal.fire({
-                title: 'ต้องการลบข้อมูล ใช่หรือไม่',
+                title: 'ต้องการลงชื่อออก ใช่หรือไม่',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonClass: 'btn btn-success',
