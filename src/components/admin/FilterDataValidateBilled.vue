@@ -24,6 +24,9 @@
             <select name="filterBy-status-adbl" id="filterBy-status-adbl" class="form-control"></select>
         </div>
         <div class="col-md-4 col-lg-4 form-group">
+            <select name="filterBy-datepayreal-adbl" id="filterBy-datepayreal-adbl" class="form-control"></select>
+        </div>
+        <div class="col-md-4 col-lg-4 form-group">
             <input type="text" name="filterBy-invoiceid-adbl" id="filterBy-invoiceid-adbl" class="form-control" placeholder="ค้นหาด้วย Invoice">
         </div>
     </div>

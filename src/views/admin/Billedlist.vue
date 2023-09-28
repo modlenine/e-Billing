@@ -19,6 +19,7 @@
                                 <th class="td3">Vender ID</th>
                                 <th class="td4">Company</th>
                                 <th class="td5">Credit term</th>
+                                <th class="td7">Date Pay</th>
                                 <th class="td7">Date of bill</th>
                                 <th class="td7">Status</th>
                             </tr>
@@ -62,13 +63,15 @@ export default {
             let company_filter = $('#filterBy-company-adbl').val();
             let status_filter = $('#filterBy-status-adbl').val();
             let invoiceid_filter = $('#filterBy-invoiceid-adbl').val();
+            let datepayreal_filter = $('#filterBy-datepayreal-adbl').val();
 
             let filterValidateBill_admin = {
             "startDate_filter":startDate_filter,
             "endDate_filter":endDate_filter,
             "company_filter":company_filter,
             "status_filter":status_filter,
-            "invoice_filter":invoiceid_filter
+            "invoice_filter":invoiceid_filter,
+            "datepayreal_filter":datepayreal_filter
             };
 
             //create session storage
@@ -92,6 +95,7 @@ export default {
             $('#filterBy-company-adbl').val('');
             $('#filterBy-status-adbl').val('');
             $('#filterBy-invoiceid-adbl').val('');
+            $('#filterBy-datepayreal-adbl').val('');
 
             proxy.loadBilledList();
 
@@ -112,6 +116,7 @@ export default {
             let company_filter = $('#filterBy-company-adbl').val();
             let status_filter = $('#filterBy-status-adbl').val();
             let invoice_filter = $('#filterBy-invoiceid-adbl').val();
+            let datepayreal_filter = $('#filterBy-datepayreal-adbl').val();
 
 
             if(startDate_filter == "" || startDate_filter == null){
@@ -138,6 +143,10 @@ export default {
                 invoice_filter = 0;
             }
 
+            if(datepayreal_filter == "" || datepayreal_filter == null){
+                datepayreal_filter = 0;
+            }
+
             // console.log(startDate_filter+"/"+endDate_filter+"/"+company_filter+"/"+status_filter);
 
             let thid = 1;
@@ -162,7 +171,7 @@ export default {
                               }
                           },
                           "ajax": {
-                          "url":this.url+'intsys/ebilling/ebilling_backend/apiadmin/loadBilledList/'+startDate_filter+'/'+endDate_filter+'/'+company_filter+'/'+status_filter+'/'+invoice_filter,
+                          "url":this.url+'intsys/ebilling/ebilling_backend/apiadmin/loadBilledList/'+startDate_filter+'/'+endDate_filter+'/'+company_filter+'/'+status_filter+'/'+invoice_filter+'/'+datepayreal_filter,
                           },
                           dom: 'Bfrtip',
                             "buttons": [{
@@ -194,10 +203,10 @@ export default {
                       });
                   });
 
-                    // $('#normal_list6 , #normal_list2').prop('readonly' , true).css({
-                    //     'background-color':'#F5F5F5',
-                    //     'cursor':'no-drop'
-                    // });
+                $('#tbl_billedlist6').prop('readonly' , true).css({
+                    'background-color':'#F5F5F5',
+                    'cursor':'no-drop'
+                });
         },
         getcompany(){
           axios.get(this.url+'intsys/ebilling/ebilling_backend/apiadmin/getcompany').then(res=>{
@@ -231,8 +240,30 @@ export default {
                         `;
                     }
                     $('#filterBy-status-adbl').html(html);
-                    this.loadFilterOnSessionStorage();
+                    this.getDateOfPayReal();
                     
+                }
+            });
+        },
+        getDateOfPayReal(){
+            axios.post(this.url+'intsys/ebilling/ebilling_backend/apiadmin/getDateOfPayRealM' , {
+                action:"getDateOfPayReal",
+                // dateStart:$('#startDate-rp').val(),
+                // dateEnd:$('#endDate-rp').val()
+            }).then(res=>{
+                console.log(res.data);
+                if(res.data.status == "Select Data Success"){
+                    let result = res.data.result;
+                    let html = `
+                        <option value="">กรองด้วย วันที่จ่ายเงิน</option>
+                    `;
+                    for(let i = 0; i < result.length; i++){
+                        html +=`
+                        <option value="`+result[i].ma_dateofpayreal+`">`+result[i].ma_dateofpayreal+`</option>
+                        `;
+                    }
+                    $('#filterBy-datepayreal-adbl').html(html);
+                    this.loadFilterOnSessionStorage();
                 }
             });
         },
@@ -246,12 +277,14 @@ export default {
                 let company_filter = JSON.parse(get_filterValidateBill_admin).company_filter;
                 let status_filter = JSON.parse(get_filterValidateBill_admin).status_filter;
                 let invoice_filter = JSON.parse(get_filterValidateBill_admin).invoice_filter;
+                let datepayreal_filter = JSON.parse(get_filterValidateBill_admin).datepayreal_filter;
 
                 $('#startDate-adbl').val(startDate_filter);
                 $('#endDate-adbl').val(endDate_filter);
                 $('#filterBy-company-adbl').val(company_filter);
                 $('#filterBy-status-adbl').val(status_filter);
                 $('#filterBy-invoiceid-adbl').val(invoice_filter);
+                $('#filterBy-datepayreal-adbl').val(datepayreal_filter);
 
             }
             proxy.loadBilledList();
