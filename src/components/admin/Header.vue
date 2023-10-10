@@ -103,6 +103,11 @@
                                             <span class="mtext">รายงานแสดงตามรายการ</span>
                                         </router-link>
                                     </li>
+                                    <li>
+                                        <router-link to='/admin/reportnotifypay' class="">
+                                            <span class="mtext">รายงานผลการส่ง Email</span>
+                                        </router-link>
+                                    </li>
                                 </ul>
                             </li>
 

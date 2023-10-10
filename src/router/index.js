@@ -10,6 +10,7 @@ import Announcepage from '@/views/admin/Announce.vue'
 import Reportbilledadmin from '@/views/admin/Reportbilled.vue'
 import Reportbilledsumadmin from '@/views/admin/Reportbilledsum.vue'
 import Settinguser from '@/views/admin/Settinguser.vue'
+import Reportnotifypay from '@/views/admin/Reportnotifypay.vue'
 
 import Activate from '@/views/vender/Activate.vue'
 import ResultActivate from '@/views/vender/ResultActivate.vue'
@@ -76,6 +77,11 @@ const routes = [
     path:'/admin/reportbilledsum',
     name:'Reportbilledsumadmin',
     component:Reportbilledsumadmin
+  },
+  {
+    path:'/admin/reportnotifypay',
+    name:'Reportnotifypay',
+    component:Reportnotifypay
   },
   {
     path: '/activate/:id/:code',
