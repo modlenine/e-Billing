@@ -52,7 +52,7 @@
             </div>
           </div> -->
 
-          <div class="row">
+          <!-- <div class="row">
             <div class="col-xl-12 mb-30">
               <div class="card-box height-100-p pd-20">
                   <button type="button" id="btn-addBilldate" name="btn-addBilldate" class="btn btn-info btn-addBilldate" data-target="#setBilldate_modal" data-toggle="modal">ตั้งค่า</button>
@@ -73,7 +73,7 @@
                   </div>
               </div>
             </div>
-          </div>
+          </div> -->
 
 
           <div class="row">
